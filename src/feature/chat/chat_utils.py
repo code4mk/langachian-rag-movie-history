@@ -17,16 +17,16 @@ class MovieChatSystem:
         # Set up API keys
         self.openai_api_key = os.environ.get("OPENAI_API_KEY")
         self.pinecone_api_key = os.environ.get("PINECONE_API_KEY")
-        self.pinecone_env = os.environ.get("PINECONE_ENV")
+        
 
         # Initialize LLM
         self.llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
         
         # Prepare document embeddings
         embeddings = OpenAIEmbeddings(openai_api_key=self.openai_api_key)
-        self.index_name = "movie-quiz"
-        
+
         # Initialize Pinecone Vector Store
+        self.pincone_index = os.environ.get("PINECONE_INDEX")
         self.vectorstore = PineconeVectorStore(index_name=self.index_name, embedding=embeddings)
         
         # Contextualize question
