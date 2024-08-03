@@ -38,16 +38,17 @@ def create_vectorstore():
     # Retrieve API keys and index name from environment variables
     openai_api_key = os.environ.get("OPENAI_API_KEY")
     pinecone_api_key = os.environ.get("PINECONE_API_KEY")
-    pinecone_index = os.environ.get("PINECONE_INDEX")
+    pinecone_index_name = os.environ.get("PINECONE_INDEX_NAME")
 
     # Initialize OpenAI embeddings and Pinecone
     embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
     pc = Pinecone(api_key=pinecone_api_key)
 
     # Create or connect to the Pinecone index
-    index_name = pinecone_index
+    index_name = pinecone_index_name
     if index_name not in pc.list_indexes().names():  
-        pc.create_index(name=index_name, dimension=1536, metric="cosine")
+        print(f"pinecone {index_name} is not exist, create index and try again")
+        return
 
     print("Vector is storing, wait...")
     # Create the vector store using the split documents and embeddings

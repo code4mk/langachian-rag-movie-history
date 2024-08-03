@@ -17,6 +17,7 @@ class MovieChatSystem:
         # Set up API keys
         self.openai_api_key = os.environ.get("OPENAI_API_KEY")
         self.pinecone_api_key = os.environ.get("PINECONE_API_KEY")
+        self.pinecone_index_name = os.environ.get("PINECONE_INDEX_NAME")
         
 
         # Initialize LLM
@@ -26,7 +27,7 @@ class MovieChatSystem:
         embeddings = OpenAIEmbeddings(openai_api_key=self.openai_api_key)
 
         # Initialize Pinecone Vector Store
-        self.pincone_index = os.environ.get("PINECONE_INDEX")
+        self.index_name = self.pinecone_index_name
         self.vectorstore = PineconeVectorStore(index_name=self.index_name, embedding=embeddings)
         
         # Contextualize question

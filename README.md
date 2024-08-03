@@ -38,7 +38,7 @@ This is a Retrieval-Augmented Generation (RAG) application using Langchain, Open
     ```plaintext
     OPENAI_API_KEY=""
     PINECONE_API_KEY=""
-    PINECONE_INDEX="movie-history"
+    PINECONE_INDEX_NAME="movie-history"
     FEATURE_NAME="chat" # "qa"
     ```
 

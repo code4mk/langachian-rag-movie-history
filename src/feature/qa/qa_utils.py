@@ -11,12 +11,12 @@ load_dotenv()
 # Set up API keys
 openai_api_key = os.environ.get("OPENAI_API_KEY")
 pinecone_api_key = os.environ.get("PINECONE_API_KEY")
-pincone_index = os.environ.get("PINECONE_INDEX")
+pincone_index_name = os.environ.get("PINECONE_INDEX_NAME")
 
 class MovieQASystem:
     def __init__(self):
         embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
-        self.index_name = pincone_index
+        self.index_name = pincone_index_name
         self.vectorstore = PineconeVectorStore(index_name=self.index_name, embedding=embeddings)
         
         # Using VectorStoreRetriever
