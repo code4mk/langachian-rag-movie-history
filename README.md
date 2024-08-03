@@ -1,6 +1,6 @@
 # RAG Application
 
-This is a Retrieval-Augmented Generation (RAG) application using Langchain, OpenAI, and Pinecone for movie history
+This is a Retrieval-Augmented Generation (RAG) application using Langchain, OpenAI, and Pinecone for movie history.
 
 ## Features
 - Chat
@@ -31,8 +31,34 @@ This is a Retrieval-Augmented Generation (RAG) application using Langchain, Open
     pip install -r requirements.txt
     ```
 
-4. **Run the application:**
+4. **Set up environment variables:**
+
+    Create a `.env` file in the root directory of your project and add the following variables:
+
+    ```plaintext
+    OPENAI_API_KEY=""
+    PINECONE_API_KEY=""
+    PINECONE_INDEX="movie-history"
+    FEATURE_NAME="chat" # "qa"
+    ```
+
+    -> `FEATURE_NAME` will be `chat|qa` . diff is chat will preserve history
+
+## Load Data into Pinecone VectorDB
+
+1. **Load the data into Pinecone:**
+
+    ```bash
+    python ./src/vector_store/load_data.py
+    ```
+
+## Run the Project
+
+1. start project with gradio ui
 
     ```bash
     python app.py
     ```
+
+* `127.0.0.1:7860`
+
